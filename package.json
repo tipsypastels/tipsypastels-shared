@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "tipsypastels",
@@ -12,5 +12,13 @@
   "devDependencies": {
     "typescript": "^3.7.3"
   },
-  "files": ["lib/**/*"]
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "@types/randomcolor": "^0.5.3",
+    "@types/strftime": "^0.9.2",
+    "randomcolor": "^0.5.4",
+    "strftime": "^0.10.0"
+  }
 }

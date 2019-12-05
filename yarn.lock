@@ -2,6 +2,22 @@
 # yarn lockfile v1
 
 
+"@types/randomcolor@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@types/randomcolor/-/randomcolor-0.5.3.tgz#2030101c695dd1b048e82ba3d5e6d605b37b9c0c"
+
+"@types/strftime@^0.9.2":
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/@types/strftime/-/strftime-0.9.2.tgz#d74d791da15ef7ce8db89055af6752750e6784c9"
+
+randomcolor@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/randomcolor/-/randomcolor-0.5.4.tgz#df615b13f25b89ea58c5f8f72647f0a6f07adcc3"
+
+strftime@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/strftime/-/strftime-0.10.0.tgz#b3f0fa419295202a5a289f6d6be9f4909a617193"
+
 typescript@^3.7.3:
   version "3.7.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.3.tgz#b36840668a16458a7025b9eabfad11b66ab85c69"
