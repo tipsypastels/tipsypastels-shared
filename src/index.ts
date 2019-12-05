@@ -9,6 +9,7 @@ export {
 
 export {
   ReactionName,
+  VisibilityLevel,
 } from './types';
 
 export {
