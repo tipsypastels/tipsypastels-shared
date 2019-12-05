@@ -10,6 +10,17 @@ export {
 export {
   ReactionName,
   VisibilityLevel,
+  PostLayout,
+  DEFAULT_POST_LAYOUT,
+  SectionLayout,
+  DEFAULT_SECTION_LAYOUT,
+  SwearFilter,
+  DEFAULT_SWEAR_FILTER,
+  ProfilePostPrivacy,
+  DEFAULT_PROFILE_POST_PRIVACY,
+  ADS_IN_HEADER,
+  ADS_IN_POSTS,
+  ADS_IN_TEXT,
 } from './types';
 
 export {
@@ -41,6 +52,10 @@ export {
   daysInMonth,
   cloneDate,
 } from './helpers/date';
+
+export {
+  canAccessWithVisibility
+} from './helpers/permissions';
 
 export {
   capitalize,
