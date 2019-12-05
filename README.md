@@ -1,3 +1,3 @@
-# PokéCommunity 3 Constants
+# PokéCommunity 3 Shared
 
-`yarn add @pc3/constants`
+`yarn add @pc3/shared`
