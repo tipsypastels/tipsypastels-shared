@@ -2,27 +2,30 @@
   "name": "@pc3/shared",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest --config jestconfig.json"
+    "test": "jest --config jestconfig.json",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test"
   },
   "keywords": [],
   "author": "tipsypastels",
   "license": "ISC",
+  "dependencies": {
+    "randomcolor": "^0.5.4",
+    "strftime": "^0.10.0"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.23",
+    "@types/randomcolor": "^0.5.3",
+    "@types/strftime": "^0.9.2",
     "jest": "^24.9.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
   },
   "files": [
     "lib/**/*"
-  ],
-  "dependencies": {
-    "@types/randomcolor": "^0.5.3",
-    "@types/strftime": "^0.9.2",
-    "randomcolor": "^0.5.4",
-    "strftime": "^0.10.0"
-  }
+  ]
 }

@@ -8,6 +8,11 @@ export {
 } from './config';
 
 export {
+  PC3_VERSION_NAME,
+  PC3_CREDITS,
+} from './credits';
+
+export {
   ReactionName,
   VisibilityLevel,
   PostLayout,
