@@ -30,7 +30,9 @@ export {
 } from './types';
 
 export {
-  mapNumericRange,
+  RangeOptions,
+  RangeCallback,
+  Range,
   partition,
   partitionThenMap,
   uniqueBy,

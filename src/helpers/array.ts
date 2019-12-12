@@ -1,8 +1,32 @@
-export function mapNumericRange<T>(min: number, max: number, callback: (cur: number) => T): T[] {
-  const ary: T[] = [];
+export interface RangeOptions<T = number> {
+  exclusive?: boolean;
+}
 
-  for (let i = min; i < max; i++) {
-    ary.push(callback(i));
+export type RangeCallback<T> = (num: number) => T;
+
+// typescript is hard
+export function Range<T = number>(min: number, max: number): T[];
+export function Range<T = number>(min: number, max: number, callback: RangeCallback<T>, opts?: RangeOptions<T>): T[];
+export function Range<T = number>(min: number, max: number, opts: RangeOptions<T>, callback?: RangeCallback<T>): T[];
+export function Range<T = number>(min: any, max: any, callbackOrOpts?: any, optsOrCallback?: any): T[] {
+  const ary = [];
+
+  let callback, opts;
+
+  if (typeof callbackOrOpts === 'function') {
+    callback = callbackOrOpts;
+    opts = optsOrCallback || {};
+  } else {
+    callback = optsOrCallback;
+    opts = callbackOrOpts || {};
+  }
+
+  for (let i = min; opts.exclusive ? i < max : i <= max; i++) {
+    if (callback) {
+      ary.push(callback(i));
+    } else {
+      ary.push(i);
+    }
   }
 
   return ary;
