@@ -17,8 +17,8 @@ export {
   VisibilityLevel,
   PostLayout,
   DEFAULT_POST_LAYOUT,
-  SectionLayout,
-  DEFAULT_SECTION_LAYOUT,
+  SectionAppearance,
+  DEFAULT_SECTION_APPEARANCE,
   SwearFilter,
   DEFAULT_SWEAR_FILTER,
   ProfilePostPrivacy,
@@ -26,6 +26,7 @@ export {
   ADS_IN_HEADER,
   ADS_IN_POSTS,
   ADS_IN_TEXT,
+  Gender,
 } from './types';
 
 export {
