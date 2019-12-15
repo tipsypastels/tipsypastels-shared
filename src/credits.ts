@@ -17,6 +17,7 @@ export const PC3_CREDITS = new Map<string, string[]>([
     'Devin N.',
     'Jo Ruby P.',
     'Dakota S.',
+    'Patrick W.',
     'Nick Y.',
   ]],
   ['Back-End Development', [

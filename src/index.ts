@@ -30,6 +30,11 @@ export {
 } from './types';
 
 export {
+  PC3_PAGE_TITLE,
+  GAME_CORNER_PAGE_TITLE,
+} from './strings';
+
+export {
   RangeOptions,
   RangeCallback,
   Range,
