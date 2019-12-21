@@ -15,6 +15,7 @@ export {
 export {
   ReactionName,
   VisibilityLevel,
+  OpenLevel,
   PostLayout,
   DEFAULT_POST_LAYOUT,
   SectionAppearance,

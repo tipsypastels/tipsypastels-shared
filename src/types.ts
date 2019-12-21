@@ -11,6 +11,12 @@ export enum VisibilityLevel {
   DELETED = 2,
 }
 
+export enum OpenLevel {
+  CLOSED = 0,
+  OPEN = 1,
+  REDIRECT = 10,
+}
+
 export type PostLayout = 'side' | 'top';
 export const DEFAULT_POST_LAYOUT: PostLayout = 'top';
 
