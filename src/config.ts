@@ -141,3 +141,6 @@ export const ALLOWED_ATTACHMENT_TYPES = [
   "xlsx",
   "zip",
 ];
+
+export const POSTS_PER_PAGE = 25;
+export const THREADS_PER_PAGE = 50;

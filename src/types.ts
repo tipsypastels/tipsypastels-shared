@@ -37,3 +37,16 @@ export const ADS_IN_TEXT = 0b100;
 export type Gender = 'female' | 'male' | 'nonbinary' | null;
 
 // TODO figure out postDisplay
+
+// this is confusing, but PostInfractionState is for the cached infraction value on Post, whereas InfractionAction is a property of the infractions table. It's very annoying that they use different values :/
+export enum PostInfractionState {
+  NONE = 0,
+  WARNING = 1,
+  INFRACTION = 2,
+}
+
+export enum InfractionAction {
+  INFRACTION = 0,
+  WARNING = 1,
+  REVERSED = 2,
+}

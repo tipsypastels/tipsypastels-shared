@@ -5,6 +5,8 @@ export {
   CODE_BLOCK_LANGUAGES,
   CODE_BLOCK_ALIASES,
   ALLOWED_ATTACHMENT_TYPES,
+  POSTS_PER_PAGE,
+  THREADS_PER_PAGE,
 } from './config';
 
 export {
@@ -28,6 +30,8 @@ export {
   ADS_IN_POSTS,
   ADS_IN_TEXT,
   Gender,
+  PostInfractionState,
+  InfractionAction,
 } from './types';
 
 export {
