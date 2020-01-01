@@ -144,7 +144,7 @@ export const ALLOWED_ATTACHMENT_TYPES = [
 
 export const SWEAR_FILTER_CENSORED_WORDS = {
   cunt:   { pokemon: 'cloyster' },
-  shit:   { pokemon: 'muk' },
+  shit:   { pokemon: 'muk', unless: 'bullshit' },
   pussy:  { pokemon: 'cloyster' },
   bitch:  { pokemon: 'rattata' },
   nigger: { pokemon: 'jirachi' },

@@ -51,4 +51,9 @@ describe(censor, () => {
     expect(censor('cofagrigus', 'asterisks')).toBe('cofagrigus');
     expect(censor('cofagrigus', 'pokemon')).toBe('cofagrigus');
   });
+
+  it('can censor multiple things', () => {
+    expect(censor('fuck fuck', 'pokemon')).toBe('psyduck psyduck');
+    expect(censor('fuck shit', 'pokemon')).toBe('psyduck muk');
+  })
 });

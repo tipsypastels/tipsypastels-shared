@@ -47,6 +47,7 @@ export {
   partition,
   partitionThenMap,
   uniqueBy,
+  asArray,
 } from './helpers/array';
 
 export {
@@ -83,4 +84,11 @@ export {
   underScore,
   kebabCase,
   toWords,
+  extractCapitalization,
+  setCapitalization,
+  replaceWithMatchingCapitalization,
 } from './helpers/string';
+
+export {
+  censorSwears,
+} from './helpers/censor';
