@@ -142,5 +142,15 @@ export const ALLOWED_ATTACHMENT_TYPES = [
   "zip",
 ];
 
+export const SWEAR_FILTER_CENSORED_WORDS = {
+  cunt:   { pokemon: 'cloyster' },
+  shit:   { pokemon: 'muk' },
+  pussy:  { pokemon: 'cloyster' },
+  bitch:  { pokemon: 'rattata' },
+  nigger: { pokemon: 'jirachi' },
+  fag:    { pokemon: 'hag', unless: 'cofagrigus' },
+  fuck:   { pokemon: 'psyduck'},
+};
+
 export const POSTS_PER_PAGE = 25;
 export const THREADS_PER_PAGE = 50;

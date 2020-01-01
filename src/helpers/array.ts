@@ -61,3 +61,7 @@ export function uniqueBy<T, R>(ary: T[], callback: (item: T) => R): T[] {
 
   return [...results.values()];
 }
+
+export function asArray<T>(value: T | T[]): T[] {
+  return Array.isArray(value) ? value : [value]; 
+}
