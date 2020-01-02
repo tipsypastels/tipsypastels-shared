@@ -110,3 +110,12 @@ export function daysInMonth(date: Datelike): number {
 export function cloneDate(date: Datelike): Date {
   return new Date(resolveDate(date).toString());
 }
+
+export const Milliseconds = (count: number) => count;
+export const Seconds = (count: number) => count * 1000;
+export const Minutes = (count: number) => Seconds(count) * 60;
+export const Hours = (count: number) => Minutes(count) * 60;
+export const Days = (count: number) => Hours(count) * 24;
+export const Weeks = (count: number) => Weeks(count) * 7;
+export const Months = (count: number) => Weeks(count) * 4;
+export const Years = (count: number) => Days(count) * 365;

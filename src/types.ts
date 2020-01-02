@@ -35,6 +35,7 @@ export const ADS_IN_POSTS = 0b010;
 export const ADS_IN_TEXT = 0b100;
 
 export type Gender = 'female' | 'male' | 'nonbinary' | null;
+export type PokemonGoTeam = 'mystic' | 'valor' | 'instinct' | null;
 
 // TODO figure out postDisplay
 

@@ -31,6 +31,7 @@ export {
   ADS_IN_POSTS,
   ADS_IN_TEXT,
   Gender,
+  PokemonGoTeam,
   PostInfractionState,
   InfractionAction,
 } from './types';
@@ -71,6 +72,14 @@ export {
   getSurroundingMonths,
   daysInMonth,
   cloneDate,
+  Milliseconds,
+  Seconds,
+  Minutes,
+  Hours,
+  Days,
+  Weeks,
+  Months,
+  Years,
 } from './helpers/date';
 
 export {
