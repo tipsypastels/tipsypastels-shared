@@ -1,3 +1,5 @@
+import { Minutes } from "./helpers/time";
+
 export const EDITOR_FONT_SIZES = '1 2 3 4 5 6 7';
 export const EDITOR_FONT_OPTIONS = [
   "Abril Fatface",
@@ -154,3 +156,4 @@ export const SWEAR_FILTER_CENSORED_WORDS = {
 
 export const POSTS_PER_PAGE = 25;
 export const THREADS_PER_PAGE = 50;
+export const MARK_AS_ONLINE_LENGTH = Minutes(30);

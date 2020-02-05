@@ -1,4 +1,4 @@
-export function idObjectsEqual(a: { id: number }, b: { id: number }) {
+export function idObjectsEqual<T extends { id: number }>(a: T, b: T) {
   if (!a && !b) {
     return true;
   }

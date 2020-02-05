@@ -8,6 +8,7 @@ export {
   SWEAR_FILTER_CENSORED_WORDS,
   POSTS_PER_PAGE,
   THREADS_PER_PAGE,
+  MARK_AS_ONLINE_LENGTH,
 } from './config';
 
 export {
@@ -56,31 +57,42 @@ export {
 } from './helpers/database';
 
 export {
+  strftime,
   Datelike,
   MS_PER_DAY,
   resolveDate,
   numericDateDiff,
-  relativeDateOf,
+  humanizedDateDiff,
   standardDate,
   standardDateTime,
   standardTime,
   notificationDateFormat,
-  yearsSince,
   isPast,
   isFuture,
   isToday,
-  getSurroundingMonths,
-  daysInMonth,
   cloneDate,
+  getToday,
+  getTomorrow,
+  getYesterday,
+  getDaysFromNow,
+  getDaysAgo,
+} from './helpers/date';
+
+export {
+  createTimeUnit,
+  TimeUnit,
   Milliseconds,
   Seconds,
   Minutes,
   Hours,
   Days,
   Weeks,
-  Months,
+  Months28Days,
+  Months29Days,
+  Months30Days,
+  Months31Days,
   Years,
-} from './helpers/date';
+} from './helpers/time';
 
 export {
   canAccessWithVisibility
@@ -101,3 +113,7 @@ export {
 export {
   censorSwears,
 } from './helpers/censor';
+
+export {
+  markAsOnline,
+} from './helpers/user';
