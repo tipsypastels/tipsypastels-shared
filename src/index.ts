@@ -35,7 +35,6 @@ export {
   PokemonGoTeam,
   PostInfractionState,
   InfractionAction,
-  Nature,
   BadgeDecalStyle,
 } from './types';
 
@@ -43,6 +42,12 @@ export {
   PC3_PAGE_TITLE,
   GAME_CORNER_PAGE_TITLE,
 } from './strings';
+
+export {
+  Nature,
+  NATURES,
+  NATURE_ICONS,
+} from './natures';
 
 export {
   RangeOptions,
