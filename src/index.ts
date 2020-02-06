@@ -35,6 +35,8 @@ export {
   PokemonGoTeam,
   PostInfractionState,
   InfractionAction,
+  Nature,
+  BadgeDecalStyle,
 } from './types';
 
 export {
