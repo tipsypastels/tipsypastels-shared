@@ -1,4 +1,30 @@
-export const strftime = require('strftime');
+import { createPicker } from "./picker";
+import { capitalize } from "./string";
+
+export const strftimeWithoutExtensions = require('strftime');
+
+const DAY_OF_MONTH_SUFFIX = createPicker({
+  1: 'st', 21: 'st', 31: 'st',
+  2: 'nd', 22: 'nd',
+  3: 'rd', 23: 'rd',
+}, 'th')
+
+export const STRFTIME_EXTENSIONS = {
+  _(date: Date): string {
+    return DAY_OF_MONTH_SUFFIX(date.getDate());
+  }
+}
+
+const STRFTIME_EXTENSION_REGEX = new RegExp(`%(${Object.keys(STRFTIME_EXTENSIONS).join('|')})`, 'g')
+
+export function strftime(code: string, date: Datelike = new Date()): string {
+  date = resolveDate(date);
+  code = code.replace(STRFTIME_EXTENSION_REGEX, (_, key) => {
+    return STRFTIME_EXTENSIONS[key](date);
+  });
+
+  return strftimeWithoutExtensions(code, date);
+}
 
 export type Datelike = Date | number | string;
 
@@ -26,7 +52,7 @@ export function numericDateDiff(date1: Datelike, date2: Datelike): number {
 }
 
 // Returns "today", "yesterday", or "tomorrow" if one of those is correct, otherwise just returns the formatted date.
-export function humanizedDateDiff(date: Datelike, callback = standardDate) {
+export function humanizedDateDiff(date: Datelike) {
   date = resolveDate(date);
   const today = getToday();
 
@@ -37,38 +63,43 @@ export function humanizedDateDiff(date: Datelike, callback = standardDate) {
       return 'tomorrow';
     case 1:
       return 'yesterday';
-    default:
-      return callback(date);
   }
 }
 
 // format: May 07, 2019
-export function standardDate(date: Datelike): string {
-  date = resolveDate(date);
-  return strftime('%B %d, %Y', date);
-}
+// export function standardDate(date: Datelike): string {
+//   date = resolveDate(date);
+//   return strftime('%B %d, %Y', date);
+// }
 
-// format: May 07, 2019 at 10:22 PM
-export function standardDateTime(date: Datelike): string {
-  date = resolveDate(date);
-  return strftime('%B %d, %Y at %l:%M %p', date);
-}
-
-// format: 10:22 PM
-export function standardTime(date: Datelike): string {
-  date = resolveDate(date);
-  return strftime('%l:%M %p', date);
-}
-
-export function notificationDateFormat(date: Datelike) {
-  date = resolveDate(date);
-
-  if (isToday(date)) {
-    return strftime('%l:%M %p', date);
+/**
+ * Today/Yesterday/Tomorrow at 9:15 PM
+ * February 9th, 2020 at 9:15 PM
+ */
+export const createdAtDateFormat = createDateFormat(date => {
+  const humanizedWord = humanizedDateDiff(date);
+  if (humanizedDateDiff) {
+    return `${capitalize(humanizedWord)} at %l:%M %p`;
+  } else {
+    return '%B %e%_, %Y at %l:%M %p';
   }
+});
 
-  return strftime('%b %d, %Y %l:%M %p', date);
-}
+/**
+ * 9:15 PM
+ * Yesterday 9:15 PM
+ * Feb 9th, 2020 9:15 PM
+ */
+export const notificationDateFormat = createDateFormat(date => {
+  const humanizedWord = humanizedDateDiff(date);
+  if (humanizedWord === 'today') {
+    return '%l:%M %p';
+  } else if (humanizedWord) {
+    return `${capitalize(humanizedWord)} %l:%M %p`;
+  } else {
+    return '%b %e%_, %Y %l:%M %p';;
+  }
+})
 
 export function isPast(date: Datelike, today = new Date()): boolean {
   return numericDateDiff(date, today) > 0;
@@ -106,4 +137,17 @@ export function getDaysFromNow(count: number) {
   const newDate = cloneDate(new Date());
   newDate.setDate(newDate.getDate() + count);
   return newDate;
+}
+
+export function createDateFormat(codes: string | ((date: Date) => string)) {
+  if (typeof codes === 'string') {
+    return function(date: Datelike): string {
+      return strftime(codes, resolveDate(date));
+    }
+  } else {
+    return function(date: Datelike): string {
+      date = resolveDate(date);
+      return strftime(codes(date), date);
+    }
+  }
 }

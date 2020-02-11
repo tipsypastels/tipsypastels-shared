@@ -1,4 +1,4 @@
-import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff } from '../helpers/date';
+import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, STRFTIME_EXTENSIONS, createdAtDateFormat } from '../helpers/date';
 
 const TODAY = getToday();
 const TOMORROW = getTomorrow();
@@ -8,6 +8,7 @@ const DAY_AFTER_TOMORROW = getDaysFromNow(2);
 const DAY_BEFORE_YESTERDAY = getDaysAgo(2);
 
 describe('date helpers', () => {
+
   test('numericDateDiff', () => {
     expect(numericDateDiff(YESTERDAY, TODAY)).toBe(1);
     expect(numericDateDiff(TOMORROW, TODAY)).toBe(-1);
@@ -16,10 +17,28 @@ describe('date helpers', () => {
     expect(numericDateDiff(TODAY, TODAY)).toBe(0);
   });
 
-  test('humanizedDateDiff', () => {
-    expect(humanizedDateDiff(TODAY)).toBe('today');
-    expect(humanizedDateDiff(YESTERDAY)).toBe('yesterday');
-    expect(humanizedDateDiff(TOMORROW)).toBe('tomorrow');
-    expect(humanizedDateDiff(DAY_AFTER_TOMORROW)).toBe(strftime('%B %d, %Y', DAY_AFTER_TOMORROW));
+  describe('createDateFormat', () => {
+    test('with a string', () => {
+      const code = '%b %e, %Y';
+      const formatter = createDateFormat(code);
+      expect(formatter(TODAY)).toEqual(strftime(code, TODAY));
+    });
+
+    test('with a callback', () => {
+      const code = '%b %e, %Y';
+      const formatter = createDateFormat(() => code);
+      expect(formatter(TODAY)).toEqual(strftime(code, TODAY));
+    });
+  });
+
+  test('createdAtDateFormat', () => {
+    expect(createdAtDateFormat(TODAY)).toEqual(strftime('Today at %l:%M %p'));
+    expect(createdAtDateFormat(YESTERDAY)).toEqual(strftime('Yesterday at %l:%M %p'));
+  });
+
+  describe('strftime extensions', () => {
+    test('%_', () => {
+      expect(strftime('%B %e%_')).toEqual(strftime(`%B %e${STRFTIME_EXTENSIONS._(TODAY)}`));
+    });
   });
 });
