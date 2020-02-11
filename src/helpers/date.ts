@@ -78,7 +78,7 @@ export function humanizedDateDiff(date: Datelike) {
  */
 export const createdAtDateFormat = createDateFormat(date => {
   const humanizedWord = humanizedDateDiff(date);
-  if (humanizedDateDiff) {
+  if (humanizedWord) {
     return `${capitalize(humanizedWord)} at %l:%M %p`;
   } else {
     return '%B %e%_, %Y at %l:%M %p';

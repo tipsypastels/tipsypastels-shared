@@ -1,4 +1,4 @@
-import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, STRFTIME_EXTENSIONS, createdAtDateFormat } from '../helpers/date';
+import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, STRFTIME_EXTENSIONS, createdAtDateFormat, notificationDateFormat } from '../helpers/date';
 
 const TODAY = getToday();
 const TOMORROW = getTomorrow();
@@ -33,7 +33,14 @@ describe('date helpers', () => {
 
   test('createdAtDateFormat', () => {
     expect(createdAtDateFormat(TODAY)).toEqual(strftime('Today at %l:%M %p'));
-    expect(createdAtDateFormat(YESTERDAY)).toEqual(strftime('Yesterday at %l:%M %p'));
+    expect(createdAtDateFormat(YESTERDAY)).toEqual(strftime('Yesterday at %l:%M %p', YESTERDAY));
+    expect(createdAtDateFormat(DAY_AFTER_TOMORROW)).toEqual(strftime('%B %e%_, %Y at %l:%M %p', DAY_AFTER_TOMORROW));
+  });
+
+  test('notificationDateFormat', () => {
+    expect(notificationDateFormat(TODAY)).toEqual(strftime('%l:%M %p'));
+    expect(notificationDateFormat(YESTERDAY)).toEqual(strftime('Yesterday %l:%M %p', YESTERDAY));
+    expect(notificationDateFormat(DAY_AFTER_TOMORROW)).toEqual(strftime('%b %e%_, %Y %l:%M %p', DAY_AFTER_TOMORROW));
   });
 
   describe('strftime extensions', () => {
