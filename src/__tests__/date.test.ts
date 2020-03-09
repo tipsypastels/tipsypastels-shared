@@ -1,4 +1,4 @@
-import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, STRFTIME_EXTENSIONS, createdAtDateFormat, notificationDateFormat } from '../helpers/date';
+import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, STRFTIME_EXTENSIONS, createdAtDateFormat, notificationDateFormat } from '../date';
 
 const TODAY = getToday();
 const TOMORROW = getTomorrow();

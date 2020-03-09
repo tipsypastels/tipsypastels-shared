@@ -1,5 +1,3 @@
-# PokéCommunity 3 Shared
+My common utilities for JS development.
 
-This library contains shared logic between the client and server for PokéCommunity 3.0 aka "Newcore". Much of the stuff in here is generic type definitions, but there are also some hardcoded constants, such as the options for post reacts. In the future, it's possible we'll move some of this stuff into an admin panel of sorts, but as database queries are more expensive in PC3 (they have to send a seperate web request), it's preferable to hardcode certain values not likely to change.
-
-Admins are welcome to edit this if they know what they're doing and need to change a constant. If you don't know what you're doing... get Dakota to do it :)
+PokéCommunity 3.0 settings are no longer stored here, see the config folder of the server app, which is also exported to the client as an NPM package.

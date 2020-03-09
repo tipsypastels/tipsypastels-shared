@@ -1,4 +1,4 @@
-import { replaceWithMatchingCapitalization as rc } from '../helpers/string';
+import { replaceWithMatchingCapitalization as rc } from '../string';
 
 describe('string helpers', () => {
   describe(rc, () => {

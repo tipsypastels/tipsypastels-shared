@@ -1,4 +1,4 @@
-import { Range } from '../helpers/array';
+import { Range } from '../array';
 
 describe('array helpers', () => {
   describe(Range, () => {

@@ -1,5 +1,5 @@
-import * as Time from '../helpers/time';
-import { getToday } from '../helpers/date';
+import * as Time from '../time';
+import { getToday } from '../date';
 
 /*
  * It's easier to override the global Date object to return a mock value for today rather than dynamically calculating all the date diffs.
