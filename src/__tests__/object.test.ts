@@ -1,4 +1,4 @@
-import { mapObject } from '../object';
+import { mapObject, omitKeys } from '../object';
 
 describe('object helpers', () => {
   describe(mapObject, () => {
@@ -7,4 +7,11 @@ describe('object helpers', () => {
         .toEqual(['ab', 'cd'])
     });
   });
+
+  describe(omitKeys, () => {
+    it("removes keys", () => {
+      expect(omitKeys({ a: 1, b: 2, c: 3, d: 4 }, ['a', 'b']))
+        .toEqual({ c: 3, d: 4 })
+    })
+  })
 });

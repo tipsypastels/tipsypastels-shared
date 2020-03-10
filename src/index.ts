@@ -67,4 +67,5 @@ export {
 
 export {
   mapObject,
+  omitKeys,
 } from './object';
