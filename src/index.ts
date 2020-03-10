@@ -64,3 +64,7 @@ export {
 export {
   createPicker,
 } from './picker';
+
+export {
+  mapObject,
+} from './object';
