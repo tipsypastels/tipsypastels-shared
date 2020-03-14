@@ -68,4 +68,8 @@ export {
 export {
   mapObject,
   omitKeys,
+  transformKeys,
+  transformValues,
+  underScoreKeys,
+  camelCaseKeys,
 } from './object';

@@ -1,3 +1,5 @@
+import { underScore, camelCase } from "./string";
+
 /**
  * Map over the keys of an object and pass the key, value, index, and collection to the map callback. Returns an array.
  * @param obj The object to iterate over.
@@ -23,4 +25,36 @@ export function omitKeys<
     delete res[key];
   }
   return res;
+}
+
+export function transformKeys<
+  T extends object, 
+  R extends string | number, 
+>(obj: T, callback: (k: keyof T) => R): Record<R, T[keyof T]> {
+  const res = {} as Record<R, T[keyof T]>;
+  for (let key in obj) {
+    res[callback(key)] = obj[key];
+  }
+
+  return res;
+}
+
+export function transformValues<
+  T extends object,
+  R
+>(obj: T, callback: (v: T[keyof T]) => R): Record<keyof T, R> {
+  const res = {} as Record<keyof T, R>;
+  for (let key in obj) {
+    res[key] = callback(obj[key]);
+  }
+
+  return res;
+}
+
+export function underScoreKeys<T extends object>(obj: T) {
+  return transformKeys(obj, k => underScore(k.toString()))
+}
+
+export function camelCaseKeys<T extends object>(obj: T) {
+  return transformKeys(obj, k => camelCase(k.toString()));
 }
