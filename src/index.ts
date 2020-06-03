@@ -72,4 +72,5 @@ export {
   transformValues,
   underScoreKeys,
   camelCaseKeys,
+  XorKeys,
 } from './object';

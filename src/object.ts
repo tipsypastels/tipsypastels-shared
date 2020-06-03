@@ -58,3 +58,17 @@ export function underScoreKeys<T extends object>(obj: T) {
 export function camelCaseKeys<T extends object>(obj: T) {
   return transformKeys(obj, k => camelCase(k.toString()));
 }
+
+/**
+ * Returns a type with only one of the keys allowed at a time.
+ * 
+ *     XorKeys<{ a: string, b: string }>
+ * 
+ * Matches an object with either `a` OR `b`, but not both.
+ */
+export type XorKeys<O extends {}> = {
+  [K in keyof O]: (
+    & Record<K, O[K]>
+    & Partial<Record<Exclude<keyof O, K>, never>>
+  )
+}[keyof O];
