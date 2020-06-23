@@ -63,10 +63,6 @@ export {
 } from './string';
 
 export {
-  createPicker,
-} from './picker';
-
-export {
   mapObject,
   omitKeys,
   transformKeys,
