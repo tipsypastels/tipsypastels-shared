@@ -4,7 +4,6 @@ export interface RangeOptions<T = number> {
 
 export type RangeCallback<T> = (num: number) => T;
 
-// typescript is hard
 export function Range<T = number>(min: number, max: number): T[];
 export function Range<T = number>(min: number, max: number, callback: RangeCallback<T>, opts?: RangeOptions<T>): T[];
 export function Range<T = number>(min: number, max: number, opts: RangeOptions<T>, callback?: RangeCallback<T>): T[];
@@ -65,3 +64,21 @@ export function uniqueBy<T, R>(ary: T[], callback: (item: T) => R): T[] {
 export function asArray<T>(value: T | T[]): T[] {
   return Array.isArray(value) ? value : [value]; 
 }
+
+export function arrayRand<T>(array: T[]): T {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+/**
+ * Same as `Array.prototype.indexOf`, but uses `0` as the default.
+ * Depending on the context, this may be more useful than `-1`.
+ */
+export function default0IndexOf<T>(elems: T[], item: T) {
+  const idx = elems.indexOf(item);
+  if (idx === -1) {
+    return 0;
+  }
+
+  return idx;
+}
+

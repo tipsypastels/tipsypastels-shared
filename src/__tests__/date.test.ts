@@ -1,13 +1,29 @@
-import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, STRFTIME_EXTENSIONS, createdAtDateFormat, notificationDateFormat } from '../date';
+import { strftime, getDaysFromNow, getDaysAgo, getToday, getTomorrow, getYesterday, numericDateDiff, humanizedDateDiff, createDateFormat, strftimeWithoutExtensions, createdAtDateFormat, notificationDateFormat } from '../date';
 
-const TODAY = getToday();
-const TOMORROW = getTomorrow();
-const YESTERDAY = getYesterday();
 
-const DAY_AFTER_TOMORROW = getDaysFromNow(2);
-const DAY_BEFORE_YESTERDAY = getDaysAgo(2);
-
+const MOCK_TODAY = 'Wed Feb 05 2020 11:42:30 GMT-0800 (Pacific Standard Time)';
 describe('date helpers', () => {
+  const realDate = new Date();
+  const mockDate = new Date(MOCK_TODAY);
+
+  // @ts-ignore
+  global['Date'] = class extends Date {
+    constructor(date: any) {
+      if (date) {
+        super(date);
+      } else {
+        super(mockDate);
+      }
+    }
+  }
+
+  const TODAY = getToday();
+  const TOMORROW = getTomorrow();
+  const YESTERDAY = getYesterday();
+
+  const DAY_AFTER_TOMORROW = getDaysFromNow(2);
+  const DAY_BEFORE_YESTERDAY = getDaysAgo(2);
+
 
   test('numericDateDiff', () => {
     expect(numericDateDiff(YESTERDAY, TODAY)).toBe(1);
@@ -19,33 +35,27 @@ describe('date helpers', () => {
 
   describe('createDateFormat', () => {
     test('with a string', () => {
-      const code = '%b %e, %Y';
+      const code = '%b %-e, %Y';
       const formatter = createDateFormat(code);
-      expect(formatter(TODAY)).toEqual(strftime(code, TODAY));
+
+      expect(formatter(TODAY)).toEqual('Feb 5, 2020');
     });
 
     test('with a callback', () => {
-      const code = '%b %e, %Y';
-      const formatter = createDateFormat(() => code);
-      expect(formatter(TODAY)).toEqual(strftime(code, TODAY));
+      const formatter = createDateFormat(() => '%b %-e, %Y');
+      expect(formatter(TODAY)).toEqual('Feb 5, 2020');
     });
   });
 
   test('createdAtDateFormat', () => {
-    expect(createdAtDateFormat(TODAY)).toEqual(strftime('Today at %l:%M %p'));
-    expect(createdAtDateFormat(YESTERDAY)).toEqual(strftime('Yesterday at %l:%M %p', YESTERDAY));
-    expect(createdAtDateFormat(DAY_AFTER_TOMORROW)).toEqual(strftime('%B %e%_, %Y at %l:%M %p', DAY_AFTER_TOMORROW));
+    expect(createdAtDateFormat(TODAY)).toEqual('Today at 11:42 AM');
+    expect(createdAtDateFormat(YESTERDAY)).toEqual('Yesterday at 11:42 AM');
+    expect(createdAtDateFormat(DAY_AFTER_TOMORROW)).toEqual('February 7th, 2020 at 11:42 AM');
   });
 
   test('notificationDateFormat', () => {
-    expect(notificationDateFormat(TODAY)).toEqual(strftime('%l:%M %p'));
-    expect(notificationDateFormat(YESTERDAY)).toEqual(strftime('Yesterday %l:%M %p', YESTERDAY));
-    expect(notificationDateFormat(DAY_AFTER_TOMORROW)).toEqual(strftime('%b %e%_, %Y %l:%M %p', DAY_AFTER_TOMORROW));
-  });
-
-  describe('strftime extensions', () => {
-    test('%_', () => {
-      expect(strftime('%B %e%_')).toEqual(strftime(`%B %e${STRFTIME_EXTENSIONS._(TODAY)}`));
-    });
+    expect(notificationDateFormat(TODAY)).toEqual('11:42 AM');
+    expect(notificationDateFormat(YESTERDAY)).toEqual('Yesterday 11:42 AM');
+    expect(notificationDateFormat(DAY_AFTER_TOMORROW)).toEqual('Feb 7th, 2020 11:42 AM');
   });
 });

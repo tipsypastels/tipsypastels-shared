@@ -6,6 +6,8 @@ export {
   partitionThenMap,
   uniqueBy,
   asArray,
+  arrayRand,
+  default0IndexOf,
 } from './array';
 
 export {
@@ -15,7 +17,6 @@ export {
 export {
   strftime,
   Datelike,
-  MS_PER_DAY,
   resolveDate,
   numericDateDiff,
   humanizedDateDiff,
@@ -74,3 +75,7 @@ export {
   camelCaseKeys,
   XorKeys,
 } from './object';
+
+export {
+  REGEXP_THAT_MATCHES_ANYTHING,
+} from './regexp';

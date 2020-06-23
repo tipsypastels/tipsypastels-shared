@@ -1,0 +1,1 @@
+export const REGEXP_THAT_MATCHES_ANYTHING = /(.*?)/;
