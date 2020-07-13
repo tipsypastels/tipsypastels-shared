@@ -1,9 +1,10 @@
 {
   "name": "@tipsypastels/shared",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "repository": "https://github.com/tipsypastels/tipsypastels-shared",
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json",

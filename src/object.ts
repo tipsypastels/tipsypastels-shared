@@ -72,3 +72,11 @@ export type XorKeys<O extends {}> = {
     & Partial<Record<Exclude<keyof O, K>, never>>
   )
 }[keyof O];
+
+/**
+ * Returns a type that may be the original, `null`, or `undefined`.
+ * If the type argument is an object, the same applies to all its properties.
+ */
+export type Nullish<T> = T extends {}
+  ? (null | undefined | { [K in keyof T]?: Nullish<T[K]> })
+  : (null | undefined | T)

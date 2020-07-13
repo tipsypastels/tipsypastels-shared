@@ -71,6 +71,7 @@ export {
   underScoreKeys,
   camelCaseKeys,
   XorKeys,
+  Nullish,
 } from './object';
 
 export {
