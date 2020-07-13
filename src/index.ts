@@ -60,6 +60,7 @@ export {
   extractCapitalization,
   setCapitalization,
   replaceWithMatchingCapitalization,
+  toSentence,
 } from './string';
 
 export {
@@ -75,3 +76,12 @@ export {
 export {
   REGEXP_THAT_MATCHES_ANYTHING,
 } from './regexp';
+
+export {
+  tap,
+  yieldSelf,
+} from './hof';
+
+export {
+  indexBy,
+} from './map';

@@ -1,4 +1,4 @@
-import { replaceWithMatchingCapitalization as rc } from '../string';
+import { replaceWithMatchingCapitalization as rc, toSentence } from '../string';
 
 describe('string helpers', () => {
   describe(rc, () => {
@@ -8,6 +8,23 @@ describe('string helpers', () => {
 
     it('ignores capitalization beyond the length of the replacement', () => {
       expect(rc('HackDeoxys', 'hackdeoxys', 'world')).toBe('WorlD');
+    });
+  });
+
+  describe(toSentence, () => {
+    it('adds a capital letter and period', () => {
+      expect(toSentence('hello world')).toBe('Hello world.');
+    });
+
+    it('does not decapitalize', () => {
+      expect(toSentence('hello World')).toBe('Hello World.');
+    });
+
+    it('does not overwrite punctuation', () => {
+      expect(toSentence('hello world.')).toBe('Hello world.');
+      expect(toSentence('hello world!')).toBe('Hello world!');
+      expect(toSentence('hello world?')).toBe('Hello world?');
+      expect(toSentence('hello world;')).toBe('Hello world;');
     });
   });
 })

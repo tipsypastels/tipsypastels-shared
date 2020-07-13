@@ -1,25 +1,31 @@
+/** Output format: `Capitalized`. */
 export function capitalize(input: string): string {
   return input[0].toUpperCase() + input.slice(1).toLowerCase();
 }
 
+/** Output  format `camelCase`. */
 export function camelCase(input: string): string {
   return toWords(input).replace(/\s./g, match => {
     return match[match.length - 1].toUpperCase();
   });
 }
 
+/** Output format: `UpperCamelCase`. */
 export function upperCamelCase(input: string): string {
   return input[0].toUpperCase() + camelCase(input.slice(1));
 }
 
+/** Output format: `under_score`. */
 export function underScore(input: string): string {
   return toWords(input).replace(/\s/g, '_').toLowerCase();
 }
 
+/** Output format: `kebab-case`. */
 export function kebabCase(input: string): string {
   return toWords(input).replace(/\s/g, '-').toLowerCase();
 }
 
+/** Output format: `regular words`. */
 export function toWords(input: string): string {
   return input.replace(/[\s-_A-Z]/g, match => {
     if (/^[A-Z]$/.exec(match)) {
@@ -63,4 +69,16 @@ export function replaceWithMatchingCapitalization(input: string, from: string, t
     const cap = extractCapitalization(replaced);
     return setCapitalization(to, cap);
   });
+}
+
+/**
+ * Capitalizes the first letter of a string, and
+ * adds a period if one (or equivalent) is missing.
+ */
+export function toSentence(input: string) {
+  if (!input.match(/[!\.\?\;]$/)) {
+    input = `${input}.`;
+  }
+
+  return input[0].toUpperCase() + input.slice(1);
 }
