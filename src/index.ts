@@ -81,6 +81,8 @@ export {
 export {
   tap,
   yieldSelf,
+  Resolvable,
+  resolve,
 } from './hof';
 
 export {

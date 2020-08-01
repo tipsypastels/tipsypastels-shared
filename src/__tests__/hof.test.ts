@@ -1,4 +1,4 @@
-import { tap, yieldSelf } from '../hof';
+import { tap, yieldSelf, resolve } from '../hof';
 
 describe(tap, () => {
   it('calls the callback', () => {
@@ -19,5 +19,21 @@ describe(tap, () => {
 describe(yieldSelf, () => {
   it('calls a callback on a value', () => {
     expect(yieldSelf(1, a => a + 1)).toBe(2);
-  })
+  });
 });
+
+describe(resolve, () => {
+  it('returns non-function values', () => {
+    expect(resolve(1)).toBe(1);
+  });
+
+  it('calls functions', () => {
+    expect(resolve(() => 1)).toBe(1);
+  });
+
+  it('works with function-returning functions', () => {
+    const x = () => 1;
+    expect(resolve(x)).toBe(1);
+    expect(resolve(() => x)).toBe(x);
+  });
+})
