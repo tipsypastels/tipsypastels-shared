@@ -80,3 +80,24 @@ export type XorKeys<O extends {}> = {
 export type Nullish<T> = T extends {}
   ? (null | undefined | { [K in keyof T]?: Nullish<T[K]> })
   : (null | undefined | T)
+
+/**
+ * Same as `Object.keys`, but preserves identity of keys in Typescript.
+ * Instead of treating them all as `string`.
+ */
+export function enumKeys<T extends {}>(object: T) {
+  return Object.keys(object) as (keyof T)[];
+}
+
+/**
+ * The result of calling `enumEntries` on `T`.
+ */
+export type Entries<T extends {}> = [keyof T, T[keyof T]][];
+
+/**
+ * Same as `Object.entries`, but preserves identity of keys in Typescript.
+ * Instead of treating them all as `string`.
+ */
+export function enumEntries<T extends {}>(object: T) {
+  return Object.entries(object) as Entries<T>;
+}

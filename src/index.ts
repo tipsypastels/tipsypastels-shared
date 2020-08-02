@@ -72,6 +72,8 @@ export {
   camelCaseKeys,
   XorKeys,
   Nullish,
+  enumKeys,
+  enumEntries,
 } from './object';
 
 export {
