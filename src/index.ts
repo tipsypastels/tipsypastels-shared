@@ -89,4 +89,5 @@ export {
 
 export {
   indexBy,
+  groupBy,
 } from './map';

@@ -1,21 +1,21 @@
-import { indexBy } from '../map';
-
-const LIST = [
-  { name: 'Dakota', id: 210532 },
-  { name: 'Jake', id: 5 },
-];
-
-const LIST_WITH_NULLABLES = [
-  ...LIST,
-  { name: 'Fake User', id: null },
-];
-
-const LIST_WITH_DUPS = [
-  ...LIST,
-  { name: 'Dakota2', id: 210532 },
-];
+import { indexBy, groupBy } from '../map';
 
 describe(indexBy, () => {
+  const LIST = [
+    { name: 'Dakota', id: 210532 },
+    { name: 'Jake', id: 5 },
+  ];
+  
+  const LIST_WITH_NULLABLES = [
+    ...LIST,
+    { name: 'Fake User', id: null },
+  ];
+  
+  const LIST_WITH_DUPS = [
+    ...LIST,
+    { name: 'Dakota2', id: 210532 },
+  ];
+
   it('converts a list of objects to a map indexed by a given property', () => {
     expect(indexBy(LIST, 'id')).toStrictEqual(
       new Map([
@@ -75,5 +75,20 @@ describe(indexBy, () => {
     expect(() => {
       indexBy(LIST_WITH_DUPS, 'id', { onDuplicateKey: 'raise' });
     }).toThrowError();
+  });
+});
+
+describe(groupBy, () => {
+  const LIST = [
+    { name: 'Dakota', theme: 'PCMaster' },
+    { name: 'Nina', theme: 'PCMaster' },
+    { name: 'Jake', theme: 'VIII' },
+  ];
+
+  it('groups by common properties', () => {
+    expect(groupBy(LIST, 'theme')).toStrictEqual(new Map([
+      ['PCMaster', [LIST[0], LIST[1]]],
+      ['VIII', [LIST[2]]],
+    ]));
   });
 });

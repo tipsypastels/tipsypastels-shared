@@ -72,3 +72,61 @@ export function indexBy<T, K extends keyof T>(
 
   return out as ReadonlyMap<T[K], T>;
 }
+
+/**
+ * Gets (not calls) the value of `prop` and returns a
+ * `ReadonlyMap` where the value of `prop` is the key
+ * and each `elem` with that value is grouped into an array.
+ * 
+ * This function is different from `indexBy` in that the map
+ * values will always be arrays that contain every single
+ * entry with the given property matching that value.
+ * 
+ *    const users = [
+ *      { username: 'Dakota', theme: 'PCMaster' },
+ *      { username: 'Nina', theme: 'PCMaster' },
+ *      { username: 'Jake', theme: 'VIII' },
+ *    ];
+ * 
+ *    const usersByTheme = groupBy(users, 'theme');
+ *    const usersWithPCMaster = usersByTheme.get('PCMaster');
+ * 
+ * This example returns an array containing the "Dakota" and "Nina"
+ * entries in the original list.
+ * 
+ * This function accepts an options bag with a single argument, `onNullableKey`, 
+ * which controls how to handle a key that's null or undefined. Defaults to `skip`,
+ * but can also be `raise` or `allow`.
+ */
+export function groupBy<T, K extends keyof T>(
+  elems: T[],
+  prop: K,
+  {
+    onNullableKey = 'skip',
+  }: Pick<Opts, 'onNullableKey'> = {},
+) {
+  const out = new Map<T[K], T[]>();
+
+  for (let elem of elems) {
+    const val = elem[prop];
+
+    if (val == null) {
+      switch(onNullableKey) {
+        case 'raise': {
+          throw new Error(`Got nullable key: ${val} for property ${prop}`);
+        }
+        case 'skip': {
+          continue;
+        }
+      }
+    }
+
+    if (out.has(val)) {
+      out.set(val, [...out.get(val)!, elem]);
+    } else {
+      out.set(val, [elem]);
+    }
+  }
+
+  return out as ReadonlyMap<T[K], T[]>;
+}
